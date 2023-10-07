@@ -45,7 +45,7 @@ client.once('ready', async () => {
     ];
 
     for (const command of commands) {
-      await client.guilds.cache.get('process.env.SERVER_ID')?.commands.create(command.data);
+      await client.guilds.cache.get('process.env.SERVER_ID').commands.create(command.data);
     }
 
     console.log('スラッシュコマンドを登録しました。');
@@ -81,17 +81,3 @@ if(process.env.DISCORD_BOT_TOKEN === undefined){
 }
 
 client.login( process.env.DISCORD_BOT_TOKEN );
-
-//リプライ送信機能
-function sendReply(message, text){
-  message.reply(text)
-    .then(console.log("リプライ送信: " + text))
-    .catch(console.error);
-}
-
-//メッセージ送信機能
-function sendMsg(channelId, text, option={}){
-  client.channels.get(channelId).send(text, option)
-    .then(console.log("メッセージ送信: " + text + JSON.stringify(option)))
-    .catch(console.error);
-}
